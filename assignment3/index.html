@@ -1,43 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASSIGNMENT 3: A TEXT ADVENTURE</title>
-    <author>DANIEL (DUO LIN) WANG - FOR INTRO TO COMP SCI AND LOGIC 503 - ASSIGNMENT 3: A P5.JS TEXT ADVENTURE (WITH EVENTS) - SUBMITTED VIA OCADUWEBSPACE SERVER - LAST EDITED ON <EM>MARCH 03, 2024 AT 8:57PM</EM></author>
-    <link rel="icon" type="image/png" href="blueIcon.ico">
+    <title>typography playground</title>
     <link rel="stylesheet" href="style.css">
-
-<!-- librarys -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <!-- custom fonts -->
-<link rel="stylesheet" href="https://use.typekit.net/zqy0msb.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.dom.min.js"></script>
 </head>
-
 <body>
-    
-    <div class="intro">
-        <h1 id="changingText">CHANGES, CHANGES.</h1>
-
-        <div class="descriptor">
-            <p><strong>TEXT EDITOR</strong></p>
-            <p>use the leftmost sliders to adjust the <em>X-Y positioning</em> of your text elements.</p>
-            <p>columns: 1 and 2<br> <Strong>starting from the top:</Strong> <br> - text input <br> - text size slider <br> - distortion level slider <br> - text style selector <br> - text colour selector </p>
-            <p>use the rightmost element to adjust the <em>background colour</em>.</p>
-            <p>press down arrow to take a screenshot of your canvas.</p>
-
-
+    <div id="app-container">
+        <div id="canvas-container"></div>
+        <div id="controls">
+            <h2>typography controls</h2>
+            
+            <div class="control-group">
+                <label for="text-input">text:</label>
+                <input type="text" id="text-input" placeholder="type something...">
+            </div>
+            
+            <div class="control-group">
+                <label for="font-size">font size:</label>
+                <input type="range" id="font-size" min="10" max="100" value="40">
+                <span id="font-size-value">40px</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="letter-spacing">letter spacing:</label>
+                <input type="range" id="letter-spacing" min="-5" max="20" value="0">
+                <span id="letter-spacing-value">0px</span>
+            </div>
+            
+            <div class="control-group">
+                <label for="text-color">text color:</label>
+                <input type="color" id="text-color" value="#000000">
+            </div>
+            
+            <div class="control-group">
+                <label for="bg-color">background color:</label>
+                <input type="color" id="bg-color" value="#ffffff">
+            </div>
+            
+            <div class="control-group">
+                <label for="font-family">font family:</label>
+                <select id="font-family">
+                    <option value="Arial">Arial</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="text-align">text alignment:</label>
+                <select id="text-align">
+                    <option value="left">Left</option>
+                    <option value="center">Center</option>
+                    <option value="right">Right</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <button id="fullscreen-btn">toggle fullscreen</button>
+            </div>
         </div>
-        
     </div>
- 
-    <script src="script.js"></script>
     
+    <script src="script.js"></script>
 </body>
 </html>

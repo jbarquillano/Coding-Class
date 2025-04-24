@@ -1,150 +1,151 @@
-let bgColor;
+// typography variables
+let canvas;
+let textInput;
+let fontSizeSlider;
+let letterSpacingSlider;
+let textColorPicker;
+let bgColorPicker;
+let fontFamilySelect;
+let textAlignSelect;
+let fullscreenBtn;
 
-// text styles
-let currentStyle1, currentStyle2;
-let textStyles; 
-
-let bgColorPicker; 
-let textStyleDropdown1, textStyleDropdown2;
-let textColorPicker1, textColorPicker2;
-
-// x y pos sliders
-let textXPositionSlider, textYPositionSlider;
-
+// setup function - runs once at the beginning
+// see: https://p5js.org/reference/#/p5/setup
 function setup() {
-  createCanvas(windowWidth-125, 580);
-  
-  // bg color picker
-  bgColorPicker = createColorPicker('#dedede');
-  bgColorPicker.position(1200, 600);
-  
-  // text1 props.
-  textStyleDropdown1 = createSelect();
-  textStyleDropdown1.option('Sans-Serif Bold');
-  textStyleDropdown1.option('Serif Italic');
-  textStyleDropdown1.option('Monospace Normal');
-  textStyleDropdown1.option('Georgia BoldItalic');
-  textStyleDropdown1.position(800, 675);
-  
-  textColorPicker1 = createColorPicker('#000000');
-  textColorPicker1.position(800, 700);
-  
-  // text2 props.
-  textStyleDropdown2 = createSelect();
-  textStyleDropdown2.option('Sans-Serif Bold');
-  textStyleDropdown2.option('Serif Italic');
-  textStyleDropdown2.option('Monospace Normal');
-  textStyleDropdown2.option('Georgia BoldItalic');
-  textStyleDropdown2.position(1000, 675);
-  
-  textColorPicker2 = createColorPicker('#000000');
-  textColorPicker2.position(1000, 700);
-  
-  // text1 input
-  // input1 = createInput();
-  // input1.position(800, 600);
-  // textSizeSlider1 = createSlider(10, 400, 32);  // text size
-  // textSizeSlider1.position(800, 625);
-  // waveDistortionSlider = createSlider(0, 200, 10, 0.1); // wave distortion
-  // waveDistortionSlider.position(800, 650);
-  
-  // text2 input
-  input2 = createInput();
-  input2.position(1000, 600);
-  textSizeSlider2 = createSlider(10, 400, 32); // text size
-  textSizeSlider2.position(1000, 625);
-  randomnessSlider = createSlider(0, 20, 0, 1); // shaky
-  randomnessSlider.position(1000, 650);
-  
-  // x y sliders
-  textXPositionSlider = createSlider(0, windowWidth, windowWidth / 2); // x position
-  textXPositionSlider.position(600, 600);
-  textYPositionSlider = createSlider(0, 600, 300); // y position
-  textYPositionSlider.position(600, 625);
+    canvas = createCanvas(windowWidth * 0.7, windowHeight);
+    canvas.parent('canvas-container');
+    
+    // get control elements
+    // see: https://www.w3schools.com/js/js_htmldom_elements.asp
+    textInput = document.getElementById('text-input');
+    fontSizeSlider = document.getElementById('font-size');
+    letterSpacingSlider = document.getElementById('letter-spacing');
+    textColorPicker = document.getElementById('text-color');
+    bgColorPicker = document.getElementById('bg-color');
+    fontFamilySelect = document.getElementById('font-family');
+    textAlignSelect = document.getElementById('text-align');
+    fullscreenBtn = document.getElementById('fullscreen-btn');
+    
+    // add event listeners
+    // see: https://www.w3schools.com/js/js_htmldom_eventlistener.asp
+    textInput.addEventListener('input', function() {
+    });
+    
+    fontSizeSlider.addEventListener('input', function() {
+        document.getElementById('font-size-value').textContent = this.value;
+    });
+    
+    letterSpacingSlider.addEventListener('input', function() {
+        document.getElementById('letter-spacing-value').textContent = this.value;
+    });
+    
+    textColorPicker.addEventListener('input', function() {
+    });
+    
+    bgColorPicker.addEventListener('input', function() {
+    });
+    
+    fontFamilySelect.addEventListener('change', function() {
+    });
+    
+    textAlignSelect.addEventListener('change', function() {
+    });
+    
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    
+    // set initial values
+    textInput.value = 'type something here...';
+    
+    // set initial text properties
+    // see: https://p5js.org/reference/#/p5/textAlign
+    textAlign(CENTER, CENTER);
+    // see: https://p5js.org/reference/#/p5/textSize
+    textSize(fontSizeSlider.value);
 }
 
-function draw() {
-  background(bgColorPicker.color());
-  
-  let textStr1 = input1.value();
-  let textStr2 = input2.value();
-  let textSizeValue1 = textSizeSlider1.value(); 
-  let textSizeValue2 = textSizeSlider2.value(); 
-
-
-  applySelectedTextStyle(1);
-  textSize(textSizeValue1); // set size text1
-  let textWidth1 = textStr1.split('').reduce((acc, char) => acc + textWidth(char), 0);
-  let x1Start = textXPositionSlider.value() - textWidth1 / 2; 
-  let yStart = textYPositionSlider.value(); 
-
-  for (let i = 0; i < textStr1.length; i++) {
-    let char = textStr1.charAt(i);
-    let waveHeight = sin(frameCount * 0.05 + i * 0.2) * waveDistortionSlider.value(); // Wave effect
-    text(char, x1Start, yStart + waveHeight);
-    x1Start += textWidth(char); 
-  }
-  
-
-  applySelectedTextStyle(2);
-  textSize(textSizeValue2); // set size text2
-  let textWidth2 = textStr2.split('').reduce((acc, char) => acc + textWidth(char), 0);
-  let x2Start = textXPositionSlider.value() - textWidth2 / 2; 
-
-  for (let i = 0; i < textStr2.length; i++) {
-    let char = textStr2.charAt(i);
-    let jitterX = random(-randomnessSlider.value(), randomnessSlider.value());
-    let jitterY = random(-randomnessSlider.value(), randomnessSlider.value());
-    text(char, x2Start + jitterX, yStart + jitterY); 
-    x2Start += textWidth(char);
-  }
-}
-
-// apply selected text styles
-function applySelectedTextStyle(textNum) {
-  let textStyleDropdown = textNum === 1 ? textStyleDropdown1 : textStyleDropdown2;
-  let textColorPicker = textNum === 1 ? textColorPicker1 : textColorPicker2;
-  
-  let selectedStyle = textStyleDropdown.value();
-  switch (selectedStyle) {
-    case 'Sans-Serif Bold':
-      textFont('sans-serif');
-      textStyle(BOLD);
-      break;
-    case 'Serif Italic':
-      textFont('serif');
-      textStyle(ITALIC);
-      break;
-    case 'Monospace Normal':
-      textFont('monospace');
-      textStyle(NORMAL);
-      break;
-    case 'Georgia BoldItalic':
-      textFont('Georgia');
-      textStyle(BOLDITALIC);
-      break;
-  }
-  
-  fill(textColorPicker.color());
-}
-
-function keyPressed() {
-    if (keyCode === DOWN_ARROW) {
-        console.log('down arrow pressed');
-        let save = confirm("Do you want to save the canvas as a PNG file?");
-        if (save) {
-            saveCanvas(input1.value().substring(0, 4) + "... + " + input2.value().substring(0, 4) + "... TEXT EDITED", 'png');
-        }
+    function draw() {
+    // set background color
+    // see: https://p5js.org/reference/#/p5/background
+    background(bgColorPicker.value);
+    
+    // get text and settings
+    let textToDisplay = textInput.value;
+    let letterSpacing = parseInt(letterSpacingSlider.value);
+    let fontSize = parseInt(fontSizeSlider.value);
+    
+    // text settings - IMPORTANT: set these AFTER getting the values
+    // see: https://p5js.org/reference/#/p5/textSize
+    textSize(fontSize);
+    // see: https://p5js.org/reference/#/p5/textAlign
+    textAlign(textAlignSelect.value);
+    // see: https://p5js.org/reference/#/p5/textFont
+    textFont(fontFamilySelect.value);
+    
+    // draw text
+    // see: https://p5js.org/reference/#/p5/fill
+    fill(textColorPicker.value);
+    // see: https://p5js.org/reference/#/p5/noStroke
+    noStroke();
+    
+    // calculate text position
+    let x = width / 2;
+    let y = height / 2;
+    
+    // handle text alignment
+    if (textAlignSelect.value === 'left') {
+        x = 50;
+    } else if (textAlignSelect.value === 'right') {
+        x = width - 50;
     }
-  }
+    
+    // draw text with letter spacing
+    if (letterSpacing !== 0) {
+        // draw each character individually with spacing
+        // see: https://www.w3schools.com/js/js_string_methods.asp
+        let chars = textToDisplay.split('');
+        let totalWidth = 0;
+        
+        // calculate total width for centering
+        for (let i = 0; i < chars.length; i++) {
+            // see: https://p5js.org/reference/#/p5/textWidth
+            totalWidth += textWidth(chars[i]) + letterSpacing;
+        }
+        totalWidth -= letterSpacing; // remove last spacing
+        
+        // adjust x position for centering if needed
+        let startX = x;
+        if (textAlignSelect.value === 'center') {
+            startX = x - totalWidth / 2;
+        } else if (textAlignSelect.value === 'right') {
+            startX = x - totalWidth;
+        }
+        
+        // draw each character
+        let currentX = startX;
+        for (let i = 0; i < chars.length; i++) {
+            // see: https://p5js.org/reference/#/p5/text
+            text(chars[i], currentX, y);
+            currentX += textWidth(chars[i]) + letterSpacing;
+        }
+    } else {
+        // draw text normally if no letter spacing
+        // see: https://p5js.org/reference/#/p5/text
+        text(textToDisplay, x, y);
+    }
+}
 
+// toggle fullscreen function
+// see: https://www.w3schools.com/jsref/met_document_requestfullscreen.asp
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
 
-  // references
-  // https://editor.p5js.org/illus0r/sketches/m_1lNsw9s -- wavy text example
-  // https://www.youtube.com/watch?v=PEO4fhXMQ9s -- more wavy text
-  // https://www.w3schools.com/js/js_switch.asp -- switch statement
-  // https://www.w3schools.com/java/ref_string_charat.asp -- charAt method
-  // https://www.w3schools.com/jsref/jsref_reduce.asp -- reduce method
-
-  // Joshua Reginales -- helped with some code
-
+// window resize function
+// see: https://p5js.org/reference/#/p5/windowResized
+function windowResized() {
+    resizeCanvas(windowWidth * 0.7, windowHeight);
+} 

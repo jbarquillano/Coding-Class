@@ -29,7 +29,7 @@ let filteredImg; // this is the picture we mess with using filters
 // https://p5js.org/reference/#/p5/loadImage
 // like the example, this loads the picture file before anything starts.
 function preload(){
-    originalImg = loadImage ('img/HOT-MESS-ALL-SCANS_Page_01_Image_0001.png')
+    originalImg = loadImage ('hot-mess-a1.jpg')
 }
 
 function setup() {

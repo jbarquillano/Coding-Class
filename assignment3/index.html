@@ -3,44 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>typography playground</title>
+    <title>Assignment 3 - Typography controls</title>
     <link rel="stylesheet" href="style.css">
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.dom.min.js"></script>
 </head>
 <body>
+    <!-- main container for the app -->
     <div id="app-container">
+        <!-- canvas container - p5.js will create canvas here -->
+        <!-- see: https://p5js.org/reference/#/p5/createCanvas -->
         <div id="canvas-container"></div>
+        
+        <!-- controls panel -->
         <div id="controls">
-            <h2>typography controls</h2>
+            <h2>Tpography controls</h2>
             
+            <!-- text input control -->
+            <!-- see: https://www.w3schools.com/html/html_forms.asp -->
             <div class="control-group">
                 <label for="text-input">text:</label>
                 <input type="text" id="text-input" placeholder="type something...">
             </div>
             
+            <!-- font size slider -->
+            <!-- see: https://www.w3schools.com/html/html_form_input_types.asp -->
             <div class="control-group">
                 <label for="font-size">font size:</label>
                 <input type="range" id="font-size" min="10" max="100" value="40">
                 <span id="font-size-value">40px</span>
             </div>
             
+            <!-- letter spacing slider -->
             <div class="control-group">
                 <label for="letter-spacing">letter spacing:</label>
                 <input type="range" id="letter-spacing" min="-5" max="20" value="0">
                 <span id="letter-spacing-value">0px</span>
             </div>
             
+            <!-- text color picker -->
+            <!-- see: https://www.w3schools.com/html/html_colors.asp -->
             <div class="control-group">
                 <label for="text-color">text color:</label>
                 <input type="color" id="text-color" value="#000000">
             </div>
             
+            <!-- background color picker -->
             <div class="control-group">
                 <label for="bg-color">background color:</label>
                 <input type="color" id="bg-color" value="#ffffff">
             </div>
             
+            <!-- font family dropdown -->
+            <!-- see: https://www.w3schools.com/html/html_form_elements.asp -->
             <div class="control-group">
                 <label for="font-family">font family:</label>
                 <select id="font-family">
@@ -54,6 +71,7 @@
                 </select>
             </div>
             
+            <!-- text alignment dropdown -->
             <div class="control-group">
                 <label for="text-align">text alignment:</label>
                 <select id="text-align">
@@ -63,12 +81,16 @@
                 </select>
             </div>
             
+            <!-- fullscreen toggle button -->
+            <!-- see: https://www.w3schools.com/html/html_buttons.asp -->
             <div class="control-group">
                 <button id="fullscreen-btn">toggle fullscreen</button>
             </div>
         </div>
     </div>
     
+    <!-- custom JavaScript - load at end of body for better performance -->
+    <!-- see: https://www.w3schools.com/js/js_whereto.asp -->
     <script src="script.js"></script>
 </body>
 </html>

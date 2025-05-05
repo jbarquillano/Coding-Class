@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin: 10px 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    color: #666;
+}
+
+#sketch-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    max-width: 900px;
+    width: 100%;
+}
+
+/* style for controls container */
+#controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* style for control groups */
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* style for p5.dom sliders */
+.slider {
+    width: 200px !important;
+    margin: 0 !important;
+}
+
+/* style for p5.dom select */
+select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    width: 200px;
+}
+
+/* style for p5.dom labels */
+.label {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #333 !important;
+    font-size: 14px !important;
+    min-width: 60px !important;
+}
+
+/* canvas container */
+#canvas-container {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} 

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 5 Bootleg Photoshop</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
+</head>
+    <body>
+    <div class="main-container">
+        <div class="left-section">
+            <div class="header">
+                <h1>Bootleg Photoshop 2.0</h1>
+                <p>Upload an image and play around with the filters! They can stack :3</p>
+                <p>Enter draw mode and freehand, draw shapes, and add text to make edits in real time</p>
+            </div>
+            <div id="canvas-container" class="canvas-container"></div>
+        </div>
+        
+        <div class="right-section">
+            <div class="controls">
+                <div class="main-controls">
+                    <div class="control-group">
+                        <h3>image controls</h3>
+                        <label for="imgUpload" class="file-upload-btn">choose image</label>
+                        <input type="file" id="imgUpload" accept="image/*">
+                        <button id="resetBtn">reset image</button>
+                    </div>
+
+                    <div class="control-group">
+                        <h3>filters</h3>
+                        <div class="filter-buttons">
+                            <button id="grayBtn">grayscale</button>
+                            <button id="invertBtn">invert</button>
+                            <button id="posterizeBtn">posterize</button>
+                            <button id="blurBtn">blur</button>
+                            <button id="erodeBtn">erode</button>
+                            <button id="dilateBtn">dilate</button>
+                        </div>
+                        
+                        <div class="slider-container">
+                            <label for="thresholdSlider">threshold level</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="thresholdSlider" min="0" max="255" value="128">
+                                <span class="threshold-value">128</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="draw-controls">
+                    <div class="control-group">
+                        <h3>drawing tools</h3>
+                        <button id="drawBtn">toggle draw mode</button>
+                        
+                        <div class="color-container">
+                            <label for="colorPicker">brush color:</label>
+                            <input type="color" id="colorPicker" value="#ffffff">
+                        </div>
+                        
+                        <div class="slider-container">
+                            <label for="brushSize">brush size</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="brushSize" min="1" max="50" value="5">
+                                <span class="brush-size-value">5px</span>
+                            </div>
+                        </div>
+                        
+                        <div class="slider-container">
+                            <label for="fillOpacity">shape fill opacity</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="fillOpacity" min="0" max="255" value="255">
+                                <span class="fill-opacity-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <h3>shape tools</h3>
+                        <div class="shape-controls">
+                            <button id="freehandBtn" class="tool-btn" title="draw freely">
+                                freehand
+                            </button>
+                            <button id="lineBtn" class="tool-btn" title="draw straight lines">
+                                line
+                            </button>
+                            <button id="rectBtn" class="tool-btn" title="draw rectangles">
+                                rectangle
+                            </button>
+                            <button id="circleBtn" class="tool-btn" title="draw circles">
+                                circle
+                            </button>
+                            <button id="textboxBtn" class="tool-btn" title="add text">
+                                text box
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-controls" style="display: none;">
+                    <div class="control-group">
+                        <h3>text options</h3>
+                        <div class="slider-container">
+                            <label for="fontSize">font size</label>
+                            <div class="slider-with-value">
+                                <input type="range" id="fontSize" min="8" max="72" value="16">
+                                <span class="font-size-value">16px</span>
+                            </div>
+                        </div>
+                        <input type="text" id="textInput" class="text-input" placeholder="type your text here...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="sketch.js"></script>
+    </body>
+</html>
